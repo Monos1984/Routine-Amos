@@ -1,0 +1,61 @@
+'########################################### 
+'#                                         # 
+'#             Routine Clavier             # 
+'#            Direction + Action           # 
+'########################################### 
+'--------------------------
+' Langage : Amiga Amos Pro
+' Licence : Libre
+' Auteur : Jean Monos  
+' Programmeur : Jean Monos 
+' Graphismes : n/a
+' Musique :n/a
+'
+' Label : OffSoft/Offgame
+'
+'--------------------------  
+'
+' Version 1.0.0
+' Build  1
+' Mise à jour : 12/01/16 
+'
+'--------------------------  
+
+Rem ***********************************************
+Rem * Description et initialisation des variables *
+Rem ***********************************************
+' DEP : Variable qui contient la direction des commandes de jeu
+' ACTION : Variable qui définie l'état d'action du bouton action du jeu. 
+
+Rem =======================
+Rem = Boucle du programme =
+Rem =======================
+Do 
+   Gosub COMMANDE
+   Locate 1,1 : Print DEP
+   Locate 1,2 : Print ACTION
+   Wait Vbl 
+Loop 
+
+Rem =========================  
+Rem = Gestion des commandes =
+Rem =========================
+COMMANDE:
+
+Rem *** Clavier ***
+
+' Direction
+If Key State(78)=True : DEP=6 : Rem Direction Droite   
+Else If Key State(79)=True : DEP=4 : Rem Direction Gauche 
+Else If Key State(76)=True : DEP=8 : Rem Direction Haut 
+Else If Key State(77)=True : DEP=2 : Rem Direction Bas
+Else DEP=0
+End If 
+
+' Bouton Action
+If Key State(64)=True or Key State(68)=True or Key State(67)=True : ACTION=1 : Rem Action 
+Else ACTION=0
+End If 
+
+Return 
+
